@@ -1,5 +1,5 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.awt.*;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -12,11 +12,15 @@ public class Main {
         System.out.println("--------------------------------------------------------------------");
         System.out.println();
         System.out.println("Задание 3 урока 2.9 \"Коллекции\".");
-        part03();
+//        part03();
         System.out.println("--------------------------------------------------------------------");
         System.out.println();
         System.out.println("Задание 4 урока 2.9 \"Коллекции\".");
         part04();
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println();
+        System.out.println("Задание 5 урока 2.9 \"Коллекции\".");
+        part05();
     }
 
     public static void part01() {
@@ -46,6 +50,42 @@ public class Main {
     }
 
     public static void part04() {
+        Map<String, ArrayList<Integer>> map = new HashMap<>();
+        for (int i = 0; i < 5; i++) {
+            map.put("string" + (i + 1), generateRandom());
+        }
+        System.out.println("Созданная коллекция - " + map);
 
+        Map<String, Integer> newMap = new HashMap<>();
+        for (Map.Entry<String, ArrayList<Integer>> str : map.entrySet()) {
+//            Я не знаю как обработать коллекцию, чтобы получить сумму. Пытался вытащить коллекцию, а потом через
+//            итератор посчитать сумму (даже метод отельный написал - строки 75 - 80.
+            newMap.put(str.getKey(), sumOfValue(str.getValue()));
+        }
+        System.out.println("Новая коллекция - " + map);
+    }
+
+    public static void part05() {
+        Map<Integer, String> map = new TreeMap<>();
+        for (int i = 0; i < 11; i++) {
+            map.put(i, ("str" + i));
+        }
+        System.out.println(map);
+    }
+
+    public static ArrayList<Integer> generateRandom() {
+        ArrayList<Integer> randomNumbers = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            randomNumbers.add((int) (Math.random() * 1000));
+        }
+        return randomNumbers;
+    }
+
+    public static int sumOfValue(ArrayList<Integer> values) {
+        Integer sum = 0;
+        for (Integer value : values) {
+            sum += value;
+        }
+        return sum;
     }
 }
